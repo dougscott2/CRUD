@@ -1,0 +1,18 @@
+<html>
+<body>
+Welcome {{username}}! <form name="logout" method="post"><button type="submit">Logout</button></form>
+<br>
+<form name="addGame" method="post">
+    <input type="text" placeholder="Game name" name="newGame">
+    <input type="checkbox" name="system" value="PS4"> PS4
+    <input type="checkbox" name="system" value="Xbone"> Xbone
+    <input type="checkbox" name="system" value="PC"> PC
+    <button type="submit">Add</button>
+</form>
+Here are your games! <br>
+{{#games}}
+{{id}}. {{title}} for  {{system}}<br>
+{{/games}}
+
+</body>
+</html>
