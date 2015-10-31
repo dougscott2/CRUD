@@ -13,13 +13,25 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Game> games = new ArrayList();
        HashMap<String, User> users = new HashMap();
+        Game test = new Game();
+        test.title="test 1";
+        test.system= "system";
+        test.id = games.size() + 1;
+        games.add(test);
+        Game test2 = new Game();
+        games.add(test2);
+        test2.title = "title 2";
+        test2.system="system2";
+        test2.id=games.size()+1;
 
 
 
 
 
 
-        Spark.get(
+
+
+       Spark.get(
                 "/",
                 ((request, response) -> {
                     Session session = request.session();
@@ -27,10 +39,12 @@ public class Main {
                     if (username == null){
                         return new ModelAndView(new HashMap(), "not-logged-in.html");
                     }
-                    HashMap m = new HashMap();
-                    m.put("username", username);
+                        HashMap m = new HashMap();
+                        m.put("username", username);
+                        m.put("games", games);
 
-                    return new ModelAndView(m, "logged-in.html");
+                        return new ModelAndView(m, "logged-in.html");
+
                 }),
                 new MustacheTemplateEngine()
         );
@@ -40,7 +54,7 @@ public class Main {
                 ((request, response) -> {
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
-                   if (username == null || password== null){
+                   if (username.isEmpty() || password.isEmpty()){
                        Spark.halt(403);
                    }
                     User user = users.get(username);
@@ -59,19 +73,22 @@ public class Main {
         );
 
         Spark.post(
-                "addGame",
+                "/add",
                 ((request, response) -> {
                     //Session session = request.session();
                     Game game = new Game();
-                    game.id=games.size() + 1;
-                    game.title= request.queryParams("newGame");
-                    game.system = request.queryParams("system");
-                    games.add(game);
+
+                      game.id = games.size() + 1;
+                      game.title = request.queryParams("newGame");
+                      game.system = request.queryParams("system");
+                      games.add(game);
+
                     response.redirect("/");
                     return "";
                 })
         );
-        Spark.post(
+
+       Spark.post(
                 "/delete-game",
                 ((request, response) -> {
                     String id = request.queryParams("id");
@@ -84,7 +101,7 @@ public class Main {
                     } catch (Exception e){
 
                     }
-                    response.redirect("/");
+                      response.redirect("/");
                     return "";
                 })
         );
