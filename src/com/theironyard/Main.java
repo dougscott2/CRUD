@@ -13,16 +13,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Game> games = new ArrayList();
        HashMap<String, User> users = new HashMap();
-        Game test = new Game();
-       /* test.title="test 1";
-        test.system= "system";
-        test.id = games.size() + 1;
-        games.add(test);
-        Game test2 = new Game();
-        games.add(test2);
-        test2.title = "title 2";
-        test2.system="system2";
-        test2.id=games.size()+1;*/
+
 
 
 
