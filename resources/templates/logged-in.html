@@ -1,8 +1,8 @@
 <html>
 <body>
-Welcome {{username}}! <form name="logout" method="post"><button type="submit">Logout</button></form>
+Welcome {{username}}! <form action="logout" method="post"><button type="submit">Logout</button></form>
 <br>
-<form name="add" method="post">
+<form action="add" method="post">
     <input type="text" placeholder="Game name" name="newGame"/>
     <input type="text" oncanplay="system" name="system"/>
    <!-- <input type="checkbox" name="system" value="PS4"/> PS4
@@ -10,7 +10,7 @@ Welcome {{username}}! <form name="logout" method="post"><button type="submit">Lo
     <input type="checkbox" name="system" value="PC"/> PC -->
     <button type="submit">Add</button>
 </form>
-<form name="delete-game" method="post">
+<form action="delete-game" method="post">
     <input type="text" placeholder="Id No." name="id">
     <button type="submit">Delete Game</button>
 </form>

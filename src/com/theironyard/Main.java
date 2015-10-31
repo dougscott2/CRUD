@@ -14,7 +14,7 @@ public class Main {
         ArrayList<Game> games = new ArrayList();
        HashMap<String, User> users = new HashMap();
         Game test = new Game();
-        test.title="test 1";
+       /* test.title="test 1";
         test.system= "system";
         test.id = games.size() + 1;
         games.add(test);
@@ -22,29 +22,22 @@ public class Main {
         games.add(test2);
         test2.title = "title 2";
         test2.system="system2";
-        test2.id=games.size()+1;
+        test2.id=games.size()+1;*/
 
 
 
-
-
-
-
-
-       Spark.get(
+        Spark.get(
                 "/",
                 ((request, response) -> {
                     Session session = request.session();
                     String username = session.attribute("username");
+                    HashMap m = new HashMap();
+                    m.put("username", username);
+                    m.put("games", games);
                     if (username == null){
                         return new ModelAndView(new HashMap(), "not-logged-in.html");
                     }
-                        HashMap m = new HashMap();
-                        m.put("username", username);
-                        m.put("games", games);
-
-                        return new ModelAndView(m, "logged-in.html");
-
+                    return new ModelAndView(m, "logged-in.html");
                 }),
                 new MustacheTemplateEngine()
         );
@@ -76,7 +69,7 @@ public class Main {
                 "/add",
                 ((request, response) -> {
                     //Session session = request.session();
-                    Game game = new Game();
+                  Game game = new Game();
 
                       game.id = games.size() + 1;
                       game.title = request.queryParams("newGame");
