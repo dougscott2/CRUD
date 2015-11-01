@@ -1,0 +1,18 @@
+<html>
+<body>
+
+<form action="edit-game" method="post">
+   New game title: <input type="text" placeholder="Edited Game" name="editGame"/>
+    <br>
+    New system? <br>
+    <input type="radio" name="newSystem" value="PS4"/> PS4 <br>
+    <input type="radio" name="newSystem" value="Xbone"> Xbone <br>
+    <input type="radio" name="newSystem" value="PC"/> PC<br>
+    <button type="submit">Edit Game</button>
+
+</form>
+{{#game}}
+You're editing {{title}} for {{system}} <br>
+{{/game}}
+</body>
+</html>

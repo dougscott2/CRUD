@@ -13,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Game> games = new ArrayList();
        HashMap<String, User> users = new HashMap();
+        final User DOUG = new User();
+        DOUG.password="1234";
 
 
 
@@ -26,7 +28,7 @@ public class Main {
                     m.put("username", username);
                     m.put("games", games);
                     if (username == null){
-                        return new ModelAndView(new HashMap(), "not-logged-in.html");
+                        return new ModelAndView(m, "not-logged-in.html");
                     }
                     return new ModelAndView(m, "logged-in.html");
                 }),
@@ -57,7 +59,7 @@ public class Main {
         );
 
         Spark.post(
-                "/add",
+                "/add-game",
                 ((request, response) -> {
                     //Session session = request.session();
                   Game game = new Game();
@@ -71,21 +73,49 @@ public class Main {
                     return "";
                 })
         );
-
-       Spark.post(
+        Spark.get(
                 "/delete-game",
                 ((request, response) -> {
                     String id = request.queryParams("id");
+
                     try {
                         int idNum = Integer.valueOf(id);
                         games.remove(idNum-1);
-                        for(int i = 0; i < games.size(); i++){
-                            games.get(i).id = i + 1;
-                        }
-                    } catch (Exception e){
+
+                    } catch (Exception e){}
+
+
+
+                    response.redirect("/");
+                    return "";
+                })
+        );
+
+
+        Spark.get(
+                "/edit-game",
+                ((request, response) -> {
+                    HashMap m = new HashMap();
+                    String id = request.queryParams("id");
+                    m.put("id", id);
+                    return new ModelAndView(m, "/edit-game.html");
+                }),
+                new MustacheTemplateEngine()
+        );
+        Spark.post(
+                "/edit-game",
+                ((request, response) -> {
+                    String id = request.queryParams("id");
+                    try{
+                        int idNum = Integer.valueOf(id);
+                        Game game = games.get(idNum - 1);
+                        game.title = request.queryParams("editGame");
+                        game.system = request.queryParams("newSystem");
+                    }
+                    catch (Exception e){
 
                     }
-                      response.redirect("/");
+                    response.redirect("/");
                     return "";
                 })
         );

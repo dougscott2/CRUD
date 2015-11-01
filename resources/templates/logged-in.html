@@ -2,22 +2,34 @@
 <body>
 Welcome {{username}}! <form action="logout" method="post"><button type="submit">Logout</button></form>
 <br>
-<form action="add" method="post">
-    <input type="text" placeholder="Game name" name="newGame"/>
-   <!-- <input type="text" placeholder="system" name="system"/> -->
-    <input type="checkbox" name="system" value="PS4"/> PS4
-    <input type="checkbox" name="system" value="Xbone"> Xbone
-    <input type="checkbox" name="system" value="PC"/> PC
-    <button type="submit">Add</button>
-</form>
-<form action="delete-game" method="post">
-    <input type="text" placeholder="Id No." name="id">
+<form action="add-game" method="post">
+    Add game to library?
+
+  System? <br>
+    <input type="radio" name="system" value="PS4"/> PS4 <br>
+    <input type="radio" name="system" value="Xbone"> Xbone <br>
+    <input type="radio" name="system" value="PC"/> PC<br>
+    <input type="text" placeholder="Title" name="newGame"/>  <br>
+    <button type="submit">Add Game to Library</button>
+</form> <br>
+
+<!--<form action="delete-game" method="post">
+    <input type="text" name="id" placeholder="Game No."/>
     <button type="submit">Delete Game</button>
-</form>
+    </form> -->
+
 Here are your games! <br>
 {{#games}}
-{{id}}. {{title}} for  {{system}}<br>
-{{/games}}
+
+{{id}}. {{title}} for  {{system}}  <a href="/edit-game?id={{id}}">Edit</a>
+<a href="/delete-game?id={{id}}">Delete</a> <br>
+
+
+    <br>
+
+    {{/games}}
+<br>
+
 
 </body>
 </html>
