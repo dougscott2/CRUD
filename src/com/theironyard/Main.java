@@ -113,6 +113,7 @@ public class Main {
                         //Game game = games.get(idNum - 1);
                         //game.title = request.queryParams("newGame");
                         games.get(idNum-1).title = request.queryParams("editGame");
+                        games.get(idNum-1).system = request.queryParams("editSystem");
                     }
                     catch (Exception e){
 
