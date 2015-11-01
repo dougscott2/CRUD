@@ -4,9 +4,8 @@ Welcome {{username}}! <form action="logout" method="post"><button type="submit">
 <br>
 <form action="add-game" method="post">
     Add game to library?
-
   System? <br>
-    <input type="radio" name="system" value="PS4"/> PS4 <br>
+    <input type="radio"  name="system" value="PS4"/> PS4 <br>
     <input type="radio" name="system" value="Xbone"> Xbone <br>
     <input type="radio" name="system" value="PC"/> PC<br>
     <input type="text" placeholder="Title" name="newGame"/>  <br>
@@ -24,11 +23,7 @@ Here are your games! <br>
 {{id}}. {{title}} for  {{system}}  <a href="/edit-game?id={{id}}">Edit</a>
 <a href="/delete-game?id={{id}}">Delete</a> <br>
 
-
-    <br>
-
     {{/games}}
-<br>
 
 
 </body>

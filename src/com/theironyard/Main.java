@@ -80,8 +80,10 @@ public class Main {
 
                     try {
                         int idNum = Integer.valueOf(id);
-                        games.remove(idNum-1);
-
+                        games.remove(idNum - 1);
+                        for (int i = 0; i < games.size(); i++) {
+                           games.get(i).id = i + 1;
+                        }
                     } catch (Exception e){}
 
 
@@ -108,9 +110,9 @@ public class Main {
                     String id = request.queryParams("id");
                     try{
                         int idNum = Integer.valueOf(id);
-                        Game game = games.get(idNum - 1);
-                        game.title = request.queryParams("editGame");
-                        game.system = request.queryParams("newSystem");
+                        //Game game = games.get(idNum - 1);
+                        //game.title = request.queryParams("newGame");
+                        games.get(idNum-1).title = request.queryParams("editGame");
                     }
                     catch (Exception e){
 
