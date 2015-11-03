@@ -5,4 +5,7 @@ package com.theironyard;
  */
 public class User {
     String password;
+    //String name;
+    int id;
+
 }
